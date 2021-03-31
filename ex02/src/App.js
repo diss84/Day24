@@ -9,19 +9,22 @@ class App extends Component {
   };
   //getMyStorage
   getMyStorage = () => {
-  let myCookieData = document.cookie.getItem('Year');
+  let myCookieData = document.cookie
+  .split("; ")
+  .find((row) => row.startsWith("Year="))
+  .split("=")[1];
   let myLocalStorageData = localStorage.getItem('Paragon');
   let mySessionStorageData = sessionStorage.getItem('frontend');
-  console.log(this.getMyStorage(myCookieData, myLocalStorageData, mySessionStorageData));
+  console.log(myCookieData, myLocalStorageData, mySessionStorageData)
   };
-  //return 
-  render() {
-    return (
-      <div className='App'>
-        <button type='button' onClick={this.setMyStorage}>Set my storage</button>
-        <button type='button' onClick={this.getMyStorage}>Get my storage</button>
-      </div>
-    );
-  }
+//return 
+render() {
+  return (
+    <div className='App'>
+      <button type='button' onClick={this.setMyStorage}>Set my storage</button>
+      <button type='button' onClick={this.getMyStorage}>Get my storage</button>
+    </div>
+  );
+}
 }
 export default App; //exported App;
